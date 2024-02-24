@@ -30,6 +30,9 @@ public class RaceManager : MonoBehaviour
 
     public bool isRaceactive;
 
+   
+   
+
     private void Awake()
     {
         trigger = GameObject.Find("Race trigger");
@@ -57,12 +60,12 @@ public class RaceManager : MonoBehaviour
      
 
     }
-    public void EndRace(GameObject text)
+    public void EndRace()
     {
         arrow_gps.SetActive(true);
         isRaceactive = false;
         trigger.SetActive(true);
-        StartCoroutine(hide_retry(text));
+        
 
         index_arrow = -1;
         foreach (var a in arrows)
@@ -115,11 +118,6 @@ public class RaceManager : MonoBehaviour
         }
     }
 
-    IEnumerator hide_retry(GameObject text)
-    {
-        yield return new WaitForSeconds(3);
-        text.SetActive(false);
-
-    }
+   
 
 }

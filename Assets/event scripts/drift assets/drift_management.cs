@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 public class drift_management : MonoBehaviour
 {
     public float timeLimit = 60f;
@@ -19,6 +20,10 @@ public class drift_management : MonoBehaviour
 
     public Progress_Managements Progress_Managements;
 
+    public GameObject retry;
+
+
+   
 
 
     private void Start()
@@ -75,20 +80,29 @@ public class drift_management : MonoBehaviour
         // Additional logic such as calculating rewards, displaying results, etc.
         Debug.Log("Drift event ended. Drift Points: " + driftPoints);
 
-        if(highscore<driftPoints) 
+        if(highscore<=driftPoints) 
         {
             highscore=driftPoints;
             PlayerPrefs.SetInt("DRIFT", driftPoints);
-        }
 
-        if (temp == 4)
-        {
-            PlayerPrefs.SetInt("progress", temp + 1);
-            PlayerPrefs.Save();
-            Progress_Managements.progress++;
-            Progress_Managements.dialoguecall();
+            if (temp == 4)
+            {
+                PlayerPrefs.SetInt("progress", temp + 1);
+                PlayerPrefs.Save();
+                Progress_Managements.progress++;
+                Progress_Managements.dialoguecall();
+            }
+
         }
-       
+        else 
+        {
+
+            retry.SetActive(true);
+           
+           
+
+        }
+ 
         timer_text.text = "0";
         score_text.text = "0";
         arrow_gps.SetActive(true);
@@ -96,6 +110,5 @@ public class drift_management : MonoBehaviour
         timer.SetActive(false);
         score.SetActive(false);
         
-        // You can add more actions such as displaying results, resetting the scene, etc.
     }
 }

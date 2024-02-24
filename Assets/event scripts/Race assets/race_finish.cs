@@ -8,8 +8,11 @@ public class race_finish : MonoBehaviour
 
     RaceManager raceManager;
     Progress_Managements Progress_Managements;
-    public GameObject retry_text;
 
+    public GameObject retry;
+
+
+    
 
     private void Awake()
     {
@@ -30,15 +33,22 @@ public class race_finish : MonoBehaviour
                 Progress_Managements.progress++;
                 Progress_Managements.dialoguecall();
             }
+            else 
+            {
+                Progress_Managements.dialoguecall();
+            }
+
         }
         else
         {
+            retry.SetActive(true);
             Debug.Log("L");
-            retry_text.SetActive(true);
+           
+           
         }
-        
-        raceManager.EndRace(retry_text);
         gameObject.SetActive(false);
+        raceManager.EndRace();
+        
     }
 
 }

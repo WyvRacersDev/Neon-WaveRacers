@@ -8,15 +8,21 @@ public class trial_finish : MonoBehaviour
 
     TimeTrialManagement trial;
     Progress_Managements Progress_Managements;
+    public GameObject retry;
+
+
+   
+
     private void Awake()
     {
         trial = GameObject.Find("GameController").GetComponent<TimeTrialManagement>();
         Progress_Managements = GameObject.Find("saveManager").GetComponent<Progress_Managements>();
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.GetComponent<CarController>().Is_AI)
+        if (!other.GetComponent<CarController>().Is_AI&&(trial.end_time<trial.highscore))
         {
             int temp = PlayerPrefs.GetInt("progress");
             Debug.Log("W");
@@ -29,10 +35,20 @@ public class trial_finish : MonoBehaviour
                 Progress_Managements.progress++;
                 Progress_Managements.dialoguecall();
             }
+            else
+            {
+                Progress_Managements.dialoguecall(); 
+
+            }
+
 
         }
         else
         {
+            retry.SetActive(true);
+           
+            
+
             Debug.Log("L");
         }
 

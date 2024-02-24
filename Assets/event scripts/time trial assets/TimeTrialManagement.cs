@@ -18,17 +18,20 @@ public class TimeTrialManagement : MonoBehaviour
     private float startTime;
     public float highscore;
 
+    
    
 
     private bool isTimerRunning = false;
 
+
+    
 
 
     public GameObject arrow_gps;
 
     public Transform player_spawn;
 
-    float end_time = 0;
+    public float end_time = 0;
     void Update()
     {
         // Update the timer if it's running
@@ -100,13 +103,15 @@ public class TimeTrialManagement : MonoBehaviour
             highscore = end_time;
             PlayerPrefs.SetFloat("TIME", end_time);
 
-        }
+           
 
+            SceneManager.LoadScene("Garage");
+
+            arrow_gps.SetActive(true);
+
+        }
         DisplayFinishTime();
 
-        SceneManager.LoadScene("Garage");
-
-        arrow_gps.SetActive(true);
     }
     
 
