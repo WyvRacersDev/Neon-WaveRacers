@@ -55,7 +55,6 @@ Using PlayerPrefs class, one can save the movement of the player through the sto
 Artstyle:
 80s vaporwave/synthwave inspired futuristic art style.
 
-
 Sound:
 Different car sounds for each car state of the car, idle,start,running etc. Sounds of skid,tire smoke etc along with music that matches the vibe.
 
@@ -65,6 +64,14 @@ Close camera
 Top down Camera
 A slightly tilted top down camera
 Close camera (doesnt change direction)
+
+Video Link:
+Due to github being uncooperative, the link of the video is 
+https://drive.google.com/file/d/1r9pSr6-ZEtb4KuO8aj7hpxaQf3q5weQD/view?usp=sharing
+
+LightingData asset:
+Due to github being uncooperative again, the link of the lightingdata.asset is 
+https://drive.google.com/file/d/1kwg_YPhCkf0PjWw5DvP-G4WSHLj7LQIo/view?usp=sharing
 
 Platform:
 The game is made only for Windows devices.
