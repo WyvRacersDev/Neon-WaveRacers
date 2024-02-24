@@ -12,15 +12,19 @@ public class drift_management : MonoBehaviour
     public GameObject trigger;
     public TextMeshProUGUI timer_text;
     public TextMeshProUGUI score_text;
+    public TextMeshProUGUI highscore_text;
+    public int highscore = 0;
 
     public GameObject arrow_gps;
 
     public Progress_Managements Progress_Managements;
 
+
+
     private void Start()
     {
         Progress_Managements = GameObject.Find("saveManager").GetComponent<Progress_Managements>();
-
+        highscore = PlayerPrefs.GetInt("DRIFT", 5000);
 
     }
 
@@ -30,7 +34,7 @@ public class drift_management : MonoBehaviour
         {
             // Update the current time elapsed
            
-            score_text.text = "DRIFT SCORE "+driftPoints.ToString();
+            score_text.text = "Score: "+driftPoints.ToString();
             currentTime += Time.deltaTime;
 
             int minutes = (int)(currentTime / 60);
@@ -58,6 +62,7 @@ public class drift_management : MonoBehaviour
         isEventActive = true;
         currentTime = 0f;
         driftPoints = 0;
+        highscore_text.text ="Record: "+highscore.ToString();
         score.SetActive(true);
         timer.SetActive(true);
     }
@@ -69,9 +74,21 @@ public class drift_management : MonoBehaviour
         isEventActive = false;
         // Additional logic such as calculating rewards, displaying results, etc.
         Debug.Log("Drift event ended. Drift Points: " + driftPoints);
-        PlayerPrefs.SetInt("progress", temp + 1);
-        PlayerPrefs.Save();
-        Progress_Managements.progress++;
+
+        if(highscore<driftPoints) 
+        {
+            highscore=driftPoints;
+            PlayerPrefs.SetInt("DRIFT", driftPoints);
+        }
+
+        if (temp == 4)
+        {
+            PlayerPrefs.SetInt("progress", temp + 1);
+            PlayerPrefs.Save();
+            Progress_Managements.progress++;
+            Progress_Managements.dialoguecall();
+        }
+       
         timer_text.text = "0";
         score_text.text = "0";
         arrow_gps.SetActive(true);

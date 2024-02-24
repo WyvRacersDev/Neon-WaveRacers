@@ -350,7 +350,7 @@ MonoBehaviour:
     MaxSteerAngle: 42
     DriveType: 2
     AutomaticGearBox: 1
-    MaxMotorTorque: 200
+    MaxMotorTorque: 300
     MotorTorqueFromRpmCurve:
       serializedVersion: 2
       m_Curve:
@@ -425,6 +425,7 @@ MonoBehaviour:
     AngularVelucityInMaxAngle: 0.5
     AngularVelucityInMinAngle: 2
   CurrentAcceleration: 0
+  Speed: 0
 --- !u!114 &7983331503319718992
 MonoBehaviour:
   m_ObjectHideFlags: 0

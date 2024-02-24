@@ -70,11 +70,13 @@ public class car_choice : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Return)&&(car_index>=0)&&(car_index<end))
         {
             PlayerPrefs.SetInt("Car_Choice", car_index);
-           
-            prog++;
-            PlayerPrefs.SetInt("progress", prog);
-            PlayerPrefs.Save();
 
+            if ((prog == 1) || (prog == 3))
+            {
+                prog++;
+                PlayerPrefs.SetInt("progress", prog);
+                PlayerPrefs.Save();
+            }
             SceneManager.LoadScene("Game");
 
             

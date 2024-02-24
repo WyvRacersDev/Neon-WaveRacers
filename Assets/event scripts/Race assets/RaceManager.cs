@@ -20,7 +20,10 @@ public class RaceManager : MonoBehaviour
 
     private GameObject trigger;
     public GameObject finish;
-    
+
+    public GameObject AI_final_check_without_player;
+    public bool ai_final_check_bool;
+
     public GameController gameController;
 
     public List<CarController> Cars;
@@ -35,6 +38,7 @@ public class RaceManager : MonoBehaviour
 
     public void StartRace(Transform player)
     {
+        ai_final_check_bool = false;
         isRaceactive = true;
         index_arrow = 0;
 
@@ -53,11 +57,12 @@ public class RaceManager : MonoBehaviour
      
 
     }
-    public void EndRace()
+    public void EndRace(GameObject text)
     {
         arrow_gps.SetActive(true);
         isRaceactive = false;
         trigger.SetActive(true);
+        StartCoroutine(hide_retry(text));
 
         index_arrow = -1;
         foreach (var a in arrows)
@@ -101,7 +106,7 @@ public class RaceManager : MonoBehaviour
                 else
                     arrows[i].gameObject.SetActive(false);
 
-                if (index_arrow > 5)
+                if (index_arrow > 5||ai_final_check_bool)
                     finish.SetActive(true);
                 else
                     finish.SetActive(false);
@@ -109,4 +114,12 @@ public class RaceManager : MonoBehaviour
             }
         }
     }
+
+    IEnumerator hide_retry(GameObject text)
+    {
+        yield return new WaitForSeconds(3);
+        text.SetActive(false);
+
+    }
+
 }

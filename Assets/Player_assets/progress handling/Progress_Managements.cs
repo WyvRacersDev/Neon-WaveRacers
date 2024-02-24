@@ -17,10 +17,32 @@ public class Progress_Managements : MonoBehaviour
     public GameObject arrow_gps;
 
     public Transform target;
-    
+
+    public GameObject[] dialogues;
+
+    int size = 0;
     void Start()
     {
+        size= dialogues.Length;
         progress = PlayerPrefs.GetInt("progress", 0);
+
+        dialoguecall();
+        
+
+    }
+
+    public void dialoguecall()
+    {
+        if (progress >= size)
+        {
+            dialogues[dialogues.Length - 1].SetActive(true);
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            dialogues[progress].SetActive(true);
+            Time.timeScale = 0.0f;
+        }
     }
 
 
@@ -48,6 +70,7 @@ public class Progress_Managements : MonoBehaviour
         }
         if(progress==4)
         {
+            trigger_time_trial.SetActive(true);
             trigger_drift_trial.SetActive(true);
             target = trigger_drift_trial.transform;
         }

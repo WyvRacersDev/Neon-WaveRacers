@@ -8,6 +8,9 @@ public class race_finish : MonoBehaviour
 
     RaceManager raceManager;
     Progress_Managements Progress_Managements;
+    public GameObject retry_text;
+
+
     private void Awake()
     {
         raceManager = GameObject.Find("GameController").GetComponent<RaceManager>();
@@ -20,17 +23,21 @@ public class race_finish : MonoBehaviour
         {
             int temp = PlayerPrefs.GetInt("progress");
             Debug.Log("W");
-            PlayerPrefs.SetInt("progress", temp + 1);
-            PlayerPrefs.Save();
-            Progress_Managements.progress++;
-
+            if (temp == 0)
+            {
+                PlayerPrefs.SetInt("progress", temp + 1);
+                PlayerPrefs.Save();
+                Progress_Managements.progress++;
+                Progress_Managements.dialoguecall();
+            }
         }
         else
         {
             Debug.Log("L");
+            retry_text.SetActive(true);
         }
         
-        raceManager.EndRace();
+        raceManager.EndRace(retry_text);
         gameObject.SetActive(false);
     }
 

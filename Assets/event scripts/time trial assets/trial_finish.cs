@@ -20,9 +20,15 @@ public class trial_finish : MonoBehaviour
         {
             int temp = PlayerPrefs.GetInt("progress");
             Debug.Log("W");
-            PlayerPrefs.SetInt("progress", temp + 1);
-            PlayerPrefs.Save();
-            Progress_Managements.progress++;
+
+          
+            if (temp == 2)
+            {
+                PlayerPrefs.SetInt("progress", temp + 1);
+                PlayerPrefs.Save();
+                Progress_Managements.progress++;
+                Progress_Managements.dialoguecall();
+            }
 
         }
         else
